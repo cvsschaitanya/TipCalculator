@@ -1,0 +1,12 @@
+numpad = arrayOf(
+                mainActivity.findViewById(R.id.b0),
+                mainActivity.findViewById(R.id.b1),
+                mainActivity.findViewById(R.id.b2),
+                mainActivity.findViewById(R.id.b3),
+                mainActivity.findViewById(R.id.b4),
+                mainActivity.findViewById(R.id.b5),
+                mainActivity.findViewById(R.id.b6),
+                mainActivity.findViewById(R.id.b7),
+                mainActivity.findViewById(R.id.b8),
+                mainActivity.findViewById(R.id.b9)
+                )

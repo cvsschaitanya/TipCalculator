@@ -1,0 +1,12 @@
+numpad = arrayOfNulls(10)
+
+        numpad[0] = mainActivity.findViewById(R.id.b0)
+        numpad[1] = mainActivity.findViewById(R.id.b1)
+        numpad[2] = mainActivity.findViewById(R.id.b2)
+        numpad[3] = mainActivity.findViewById(R.id.b3)
+        numpad[4] = mainActivity.findViewById(R.id.b4)
+        numpad[5] = mainActivity.findViewById(R.id.b5)
+        numpad[6] = mainActivity.findViewById(R.id.b6)
+        numpad[7] = mainActivity.findViewById(R.id.b7)
+        numpad[8] = mainActivity.findViewById(R.id.b8)
+        numpad[9] = mainActivity.findViewById(R.id.b9)
