@@ -5,7 +5,10 @@ public class Bill {
     private double amount, tipAmount, totalAmount, amountPerPerson;
     private int tip_percent, noPeople;
 
-    public Bill(double amount, int tip_percent, int noPeople) {
+    public Bill(double amount, int tip_percent, int noPeople) throws ZeroAmountException {
+        if(amount==0)
+            throw new ZeroAmountException();
+
         this.amount = amount;
         this.tip_percent = tip_percent;
         this.noPeople = noPeople;
@@ -28,5 +31,8 @@ public class Bill {
 
     public double getAmountPerPerson() {
         return amountPerPerson;
+    }
+
+    public class ZeroAmountException extends Exception {
     }
 }

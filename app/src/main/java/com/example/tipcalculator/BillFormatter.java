@@ -9,24 +9,19 @@ public class BillFormatter {
 
     private Bill bill;
 
-    public BillFormatter(String str_amount, int tipPercent, String str_nPerson) {
+    public BillFormatter(String str_amount, int tipPercent, int nPerson) throws Bill.ZeroAmountException {
         Double amount = getAmount(str_amount);
-        int nP = getPerson(str_nPerson);
 
-        bill = new Bill(amount, tipPercent, nP);
-    }
-
-    public static int getPerson(String str_nPerson) {
-        int spaceindex = str_nPerson.indexOf(' ');
-        str_nPerson = str_nPerson.substring(0,spaceindex).trim();
-        int n = Integer.parseInt(str_nPerson);
-        return n;
+        bill = new Bill(amount, tipPercent, nPerson);
     }
 
     public static String getPersonString(int nP) {
-        String out = nP+" Person";
-        if(nP>1)
-            out = out + "s";
+        String out = "People:"+nP;
+        return out;
+    }
+
+    public static String getTipString(int tip) {
+        String out = "Tip "+tip+"%";
         return out;
     }
 

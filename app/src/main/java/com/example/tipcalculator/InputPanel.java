@@ -10,6 +10,11 @@ import java.util.StringTokenizer;
 
 public class InputPanel {
 
+    final String ZERO_INPUT_MESSAGE = "Zero Input not allowed!";
+    final String MAXIMUM_INPUT_MESSAGE = "You have reached the maximum number of digits!";
+    final String TWO_DECIMAL_CROSS = "Only 2 digits allowed after decimal!";
+
+
     MainActivity mainActivity;
 
     boolean decimal = false;
@@ -18,8 +23,6 @@ public class InputPanel {
 
     Button[] numpad;
     Button twoZeroesButton,decimal_pointButton,correctionButton;
-
-    Toast lengthExceededToast;
 
     InputPanel(MainActivity mainActivity1){
         mainActivity = mainActivity1;
@@ -43,8 +46,6 @@ public class InputPanel {
         decimal_pointButton = mainActivity.findViewById(R.id.b_decimal_point);
         correctionButton = mainActivity.findViewById(R.id.buttonclear);
 
-        lengthExceededToast = Toast.makeText(mainActivity,"You have reached the maximum number of digits!",Toast.LENGTH_SHORT);
-
         setOnClickListeners();
     }
 
@@ -60,17 +61,20 @@ public class InputPanel {
 
                     String presentvalue = getPresentValue();
                     if(!decimal&&presentvalue.length()>=6){
-                        if(!lengthExceededToast.getView().isShown())
-                            lengthExceededToast.show();
+                        lengthExceeded();
                         return;
                     }
                     else if(decimal){
                         int pointindex = presentvalue.indexOf('.');
                         if(presentvalue.length()-pointindex-1>=2){
-                            if(!lengthExceededToast.getView().isShown())
-                                lengthExceededToast.show();
+                            decimalLengthExceeded();
                             return;
                         }
+                    }
+
+                    if(billView.getError()!=null&&billView.getError().toString().equals(ZERO_INPUT_MESSAGE)&&digit!=0) {
+                        billView.setError(null);
+                        billView.clearFocus();
                     }
 
                     if(presentvalue.equalsIgnoreCase("0"))
@@ -90,8 +94,7 @@ public class InputPanel {
                 String newValue=null,presentvalue = getPresentValue();
 
                 if(!decimal&&presentvalue.length()>=5){
-                    if(!lengthExceededToast.getView().isShown())
-                        lengthExceededToast.show();
+                    lengthExceeded();
                     return;
                 }
                 else if(decimal){
@@ -100,8 +103,7 @@ public class InputPanel {
                     switch(afterDecimalDigits){
                         case 1:newValue=presentvalue+"0";break;
                         case 2:
-                            if(!lengthExceededToast.getView().isShown())
-                                lengthExceededToast.show();
+                            decimalLengthExceeded();
                             return;
                     }
                 }
@@ -123,6 +125,11 @@ public class InputPanel {
                 if(decimal)
                     return;
 
+                if(billView.getError()!=null&&billView.getError().toString().equals(MAXIMUM_INPUT_MESSAGE)) {
+                    billView.setError(null);
+                    billView.clearFocus();
+                }
+
                 decimal = true;
                 String presentvalue = getPresentValue();
                 String newValue = presentvalue + ".";
@@ -140,8 +147,16 @@ public class InputPanel {
                 if(presentvalue.equalsIgnoreCase("0"))
                     return;
 
-                if(presentvalue.isEmpty())
-                    return;
+                if(billView.getError()!=null&&billView.getError().toString().equals(MAXIMUM_INPUT_MESSAGE)) {
+                    billView.setError(null);
+                    billView.clearFocus();
+                }
+
+                if(billView.getError()!=null&&billView.getError().toString().equals(TWO_DECIMAL_CROSS)) {
+                    billView.setError(null);
+                    billView.clearFocus();
+                }
+
 
                 char last = presentvalue.charAt(presentvalue.length()-1);
                 if(last=='.')
@@ -170,4 +185,20 @@ public class InputPanel {
     public void clear() {
         decimal = false;
     }
+
+    public void zeroInput() {
+        billView.setError(ZERO_INPUT_MESSAGE);
+        billView.requestFocus();
+    }
+
+    public void lengthExceeded() {
+        billView.setError(MAXIMUM_INPUT_MESSAGE);
+        billView.requestFocus();
+    }
+
+    public void decimalLengthExceeded() {
+        billView.setError(TWO_DECIMAL_CROSS);
+        billView.requestFocus();
+    }
+
 }

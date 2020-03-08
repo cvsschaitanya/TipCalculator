@@ -19,7 +19,7 @@
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="@string/amount_tag"
-        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
@@ -32,14 +32,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvTotal"
+        android:id="@+id/x"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="@string/total_amount_tag"
-        app:autoSizeMaxTextSize="18sp"
+        android:text="@string/tip_amount"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
@@ -58,7 +58,7 @@
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="Tip 15%"
-        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
@@ -76,15 +76,15 @@
         android:layout_marginTop="5dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="@string/tip_amount"
-        app:autoSizeMaxTextSize="18sp"
+        android:text="@string/total_amount_tag"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/tvSplitAmount"
         app:layout_constraintEnd_toEndOf="@+id/NoPersons"
         app:layout_constraintStart_toStartOf="@+id/NoPersons"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
+        app:layout_constraintTop_toBottomOf="@+id/x" />
 
     <!--    <EditText-->
     <!--        android:id="@+id/bill_view_et"-->
@@ -109,16 +109,19 @@
         android:id="@+id/sb_Tip"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:background="@color/colorAccent"
         android:max="25"
         android:progressTint="@color/thumbColor"
         android:thumbTint="@color/thumbColor"
         app:layout_constraintBottom_toBottomOf="@id/tvTipPercentage"
-        app:layout_constraintEnd_toEndOf="@+id/bill_view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bill_view"
+        app:layout_constraintEnd_toStartOf="@+id/increaseTip"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="10"
+        app:layout_constraintStart_toEndOf="@+id/reduceTip"
         app:layout_constraintTop_toTopOf="@+id/tvTipPercentage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <SeekBar
         android:id="@+id/persons_bar"
@@ -138,36 +141,36 @@
         app:layout_constraintTop_toTopOf="@+id/NoPersons" />
 
     <TextView
+        android:id="@+id/tv_total_amount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/highlight_color"
+        android:gravity="center"
+        android:text="$0"
+        app:autoSizeMaxTextSize="24sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/tvtip"
+        app:layout_constraintEnd_toEndOf="@+id/tv_tip_amount"
+        app:layout_constraintStart_toStartOf="@+id/tv_tip_amount"
+        app:layout_constraintTop_toTopOf="@+id/tvtip" />
+
+    <TextView
         android:id="@+id/tv_tip_amount"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="$0.0"
-        app:autoSizeMaxTextSize="22sp"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeStepGranularity="2sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/tvtip"
-        app:layout_constraintEnd_toEndOf="@+id/tv_total_amount"
-        app:layout_constraintStart_toStartOf="@+id/tv_total_amount"
-        app:layout_constraintTop_toTopOf="@+id/tvtip" />
-
-    <TextView
-        android:id="@+id/tv_total_amount"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:text="$0.0"
+        android:text="$0"
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
+        app:layout_constraintBottom_toBottomOf="@+id/x"
         app:layout_constraintEnd_toEndOf="@+id/addperson"
         app:layout_constraintStart_toStartOf="@+id/removeperson"
-        app:layout_constraintTop_toTopOf="@+id/tvTotal" />
+        app:layout_constraintTop_toTopOf="@+id/x" />
 
     <TextView
         android:id="@+id/NoPersons"
@@ -176,12 +179,12 @@
         android:layout_marginTop="5dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="1 Person"
-        app:autoSizeMaxTextSize="18sp"
+        android:text="People:1"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/tvTotal"
+        app:layout_constraintBottom_toTopOf="@+id/x"
         app:layout_constraintEnd_toEndOf="@+id/tvTipPercentage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tvTipPercentage"
@@ -192,10 +195,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="@string/each_person"
-        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
@@ -209,28 +213,26 @@
         android:id="@+id/tvAmountPerson"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/highlight_color"
         android:gravity="center"
         android:inputType="number"
-        android:text="$0.0"
-        android:textStyle="bold"
-        app:autoSizeMaxTextSize="28sp"
+        android:text="$0"
+        app:autoSizeMaxTextSize="24sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/tvSplitAmount"
-        app:layout_constraintEnd_toEndOf="@+id/tv_tip_amount"
-        app:layout_constraintStart_toStartOf="@+id/tv_tip_amount"
+        app:layout_constraintEnd_toEndOf="@+id/tv_total_amount"
+        app:layout_constraintStart_toStartOf="@+id/tv_total_amount"
         app:layout_constraintTop_toTopOf="@+id/tvSplitAmount" />
 
     <Button
-        android:id="@+id/btnCalculate"
+        android:id="@+id/btnEmpty"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="5dp"
-        android:background="#F2B258"
-        android:text="@string/calculate_str"
+        android:background="@color/background"
         app:autoSizeMaxTextSize="50sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
@@ -239,7 +241,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_decimal_point"
-        app:layout_constraintTop_toTopOf="@+id/b9" />
+        app:layout_constraintTop_toTopOf="@+id/b_decimal_point" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#F2B258"
+        android:text="@string/calculate_str"
+        app:autoSizeMaxTextSize="17sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/b6"
+        app:layout_constraintEnd_toEndOf="@+id/btnReset"
+        app:layout_constraintStart_toStartOf="@+id/btnReset"
+        app:layout_constraintTop_toTopOf="@+id/b6" />
 
     <Button
         android:id="@+id/removeperson"
@@ -257,8 +274,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintHorizontal_weight="3"
-        app:layout_constraintStart_toStartOf="@+id/sb_Tip"
+        app:layout_constraintStart_toStartOf="@+id/bill_view"
         app:layout_constraintTop_toTopOf="@+id/persons_bar" />
+
+    <Button
+        android:id="@+id/reduceTip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        android:text="-"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/sb_Tip"
+        app:layout_constraintEnd_toStartOf="@+id/sb_Tip"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/tvTipPercentage"
+        app:layout_constraintStart_toStartOf="@+id/bill_view"
+        app:layout_constraintTop_toTopOf="@+id/sb_Tip" />
 
     <Button
         android:id="@+id/addperson"
@@ -272,12 +309,31 @@
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/persons_bar"
-        app:layout_constraintEnd_toEndOf="@id/sb_Tip"
+        app:layout_constraintEnd_toEndOf="@+id/bill_view"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toEndOf="@+id/persons_bar"
         app:layout_constraintTop_toTopOf="@+id/persons_bar" />
+
+    <Button
+        android:id="@+id/increaseTip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        android:text="+"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/sb_Tip"
+        app:layout_constraintEnd_toEndOf="@+id/bill_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/sb_Tip"
+        app:layout_constraintTop_toTopOf="@+id/sb_Tip" />
 
     <Button
         android:id="@+id/b0"
@@ -311,7 +367,7 @@
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/b00"
-        app:layout_constraintEnd_toStartOf="@+id/btnCalculate"
+        app:layout_constraintEnd_toStartOf="@+id/btnEmpty"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b00"
         app:layout_constraintTop_toTopOf="@+id/b00" />
@@ -457,13 +513,13 @@
         android:layout_height="0dp"
         android:background="#F2B258"
         android:text="@string/backspace_str"
-        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/b3"
-        app:layout_constraintEnd_toEndOf="@+id/btnReset"
-        app:layout_constraintStart_toStartOf="@+id/btnReset"
+        app:layout_constraintEnd_toEndOf="@+id/btnCalculate"
+        app:layout_constraintStart_toStartOf="@+id/btnCalculate"
         app:layout_constraintTop_toTopOf="@+id/b3" />
 
     <Button
@@ -472,14 +528,16 @@
         android:layout_height="0dp"
         android:background="#F2B258"
         android:text="@string/reset_str"
-        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/b6"
-        app:layout_constraintEnd_toEndOf="@+id/btnCalculate"
-        app:layout_constraintStart_toStartOf="@+id/btnCalculate"
-        app:layout_constraintTop_toTopOf="@+id/b6" />
+        app:layout_constraintBottom_toBottomOf="@+id/b9"
+        app:layout_constraintEnd_toEndOf="@+id/btnEmpty"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnEmpty"
+        app:layout_constraintTop_toTopOf="@+id/b9"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/b9"
@@ -521,11 +579,12 @@
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="5dp"
-        android:background="#DAF7A5"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:text="$0"
-        android:textStyle="bold"
-        app:autoSizeMaxTextSize="30sp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:autoSizeMaxTextSize="24sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Tip Calculator</string>
-    <string name="amount_tag">Amount</string>
+    <string name="amount_tag">Enter the Amount</string>
     <string name="total_amount_tag">Total Amount</string>
     <string name="tip_amount">Tip Amount</string>
-    <string name="each_person">Each Person</string>
-    <string name="backspace_str">CLEAR</string>
+    <string name="each_person">Each Person Pays</string>
+    <string name="backspace_str">DELETE</string>
     <string name="reset_str">RESET</string>
-    <string name="calculate_str">GO</string>
+    <string name="calculate_str">CALCULATE</string>
 </resources>
