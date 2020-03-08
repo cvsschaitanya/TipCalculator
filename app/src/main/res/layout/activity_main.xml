@@ -179,7 +179,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="People:1"
+        android:text="People 1"
         app:autoSizeMaxTextSize="17sp"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeStepGranularity="2sp"
